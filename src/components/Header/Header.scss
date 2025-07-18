@@ -1,0 +1,978 @@
+.Header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: #f8f9fa;
+  padding: 20px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, opacity 0.3s ease, top 0.3s ease-in-out;
+
+  &.hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    top: -100px;
+  }
+
+  &.visible {
+    transform: translateY(0);
+    opacity: 1;
+    top: 0;
+  }
+
+  .headerContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 25px;
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+
+    @media (max-width: 1100px) {
+      padding: 0 10px;
+      font-size: 16px;
+    }
+
+    @media (max-width: 900px) {
+      padding: 0 5px;
+    }
+  }
+
+  .menuIcon {
+    display: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: #333;
+
+    @media (max-width: 1050px) {
+      display: block;
+    }
+  }
+
+  .anchorsContainer {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 30px;
+
+    @media (max-width: 1100px) {
+      gap: 15px;
+
+      a,
+      .navLink {
+        padding: 0 10px;
+
+        font-size: 14px !important;
+      }
+    }
+
+    @media (max-width: 900px) {
+      a,
+      .navLink {
+        padding: 0 7px;
+        font-size: 0.85rem;
+      }
+    }
+
+    @media (max-width: 1050px) {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      right: 0;
+      background-color: #f8f9fa;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      z-index: 1000;
+
+      &.open {
+        display: flex;
+      }
+    }
+
+    .dropdown {
+      position: relative;
+
+      .dropdownButton {
+        background: none;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 16px;
+        padding: 10px 15px;
+        color: inherit;
+        transition: all 0.3s ease;
+
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+
+      .dropdownContent {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        transform: none;
+        background-color: #fff;
+        min-width: 320px;
+        max-width: 90vw;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        z-index: 1000;
+        border-radius: 10px;
+        overflow: hidden;
+        padding: 8px 0;
+        opacity: 0;
+        visibility: hidden;
+        transition: visibility 0.3s ease, opacity 0.3s ease;
+        pointer-events: none;
+
+        @media (min-width: 1201px) {
+          left: 0;
+          transform: none;
+          right: auto;
+        }
+
+        @media (min-width: 1051px) and (max-width: 1200px) {
+          left: auto;
+          right: 0;
+          transform: none;
+        }
+
+        @media (min-width: 320px) and (max-width: 1200px) {
+          &.closed {
+            transform: none;
+          }
+        }
+
+        &.open {
+          opacity: 1;
+          visibility: visible;
+          pointer-events: auto;
+        }
+
+        &.closed {
+          opacity: 0;
+          visibility: hidden;
+          pointer-events: none;
+        }
+
+        a {
+          color: #333;
+          padding: 14px 20px;
+          text-decoration: none;
+          display: block;
+          transition: all 0.3s ease;
+          font-weight: 500;
+          border-left: 3px solid transparent;
+          white-space: normal;
+          line-height: 1.4;
+          word-wrap: break-word;
+
+          &:hover {
+            background-color: #f8f8f8;
+            border-left: 3px solid #2ecc71;
+            padding-left: 25px;
+          }
+        }
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px) translateX(-50%);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) translateX(-50%);
+      }
+    }
+
+    @media (max-width: 1050px) {
+      .dropdown .dropdownContent {
+        position: static;
+        transform: none !important;
+        max-height: 0;
+        opacity: 1;
+        transition: max-height 0.4s ease-out, opacity 0.4s ease;
+        overflow: hidden;
+
+        &.open {
+          max-height: 500px;
+          opacity: 1;
+        }
+
+        &.closed {
+          max-height: 0;
+          opacity: 0;
+        }
+      }
+    }
+
+    a {
+      font-family: "Montserrat", sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: #333;
+      text-decoration: none;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: #4caf50;
+      }
+    }
+  }
+
+  .telContainer {
+    a {
+      font-size: 1.4rem;
+      color: #4caf50;
+      font-weight: 700;
+      white-space: nowrap;
+      transition: font-size 0.3s ease;
+      display: block;
+
+      @media (max-width: 1300px) {
+        font-size: 1.3rem;
+      }
+
+      @media (max-width: 1200px) {
+        font-size: 1.2rem;
+      }
+
+      @media (max-width: 1100px) {
+        font-size: 1.1rem;
+      }
+
+      @media (max-width: 1000px) {
+        font-size: 1rem;
+        margin-left: 15px;
+      }
+
+      @media (max-width: 900px) {
+        font-size: 0.9rem;
+        margin-left: 10px;
+      }
+
+      @media (max-width: 800px) {
+        font-size: 0.8rem;
+        margin-left: 5px;
+      }
+    }
+  }
+
+  // Стили для ссылки "Главная"
+  .logo-g {
+    color: #333;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    font-size: 16px;
+    position: relative;
+
+    &:hover {
+      color: #4caf50;
+      background: rgba(76, 175, 80, 0.1);
+      transform: translateY(-1px);
+    }
+
+    @media (max-width: 1200px) {
+      font-size: 14px;
+      padding: 6px 10px;
+    }
+
+    @media (max-width: 1050px) {
+      font-size: 17px !important;
+      padding: 12px 15px;
+      margin: 5px 0;
+      width: 100%;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: 600;
+
+      &:hover {
+        background: rgba(76, 175, 80, 0.1);
+        color: #4caf50;
+      }
+    }
+  }
+
+  @media (max-width: 1050px) {
+    padding: 10px 0;
+
+    .headerContainer {
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      padding: 0 15px;
+    }
+
+    .menuIcon {
+      font-size: 28px;
+      padding: 5px;
+      flex: 0 0 auto;
+    }
+
+    .telContainer {
+      flex: 0 0 auto;
+      margin: 0;
+      text-align: right;
+
+      a {
+        font-size: 18px;
+        white-space: nowrap;
+        display: block;
+        font-weight: 600;
+        text-overflow: ellipsis;
+      }
+
+      @media (max-width: 360px) {
+        a {
+          font-size: 16px;
+        }
+      }
+    }
+
+    .anchorsContainer {
+      position: fixed;
+      top: 65px;
+      left: 0;
+      right: 0;
+      width: 100%;
+      background-color: #f8f9fa;
+
+      &.open {
+        display: flex;
+        flex-direction: column;
+        max-height: calc(100vh - 65px);
+        overflow-y: auto;
+        padding-bottom: 20px;
+      }
+
+      a,
+      .dropdown .navLink {
+        font-size: 17px;
+        padding: 12px 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        font-weight: 600;
+        text-align: center;
+      }
+
+      .navLink {
+        font-size: 17px;
+        padding: 12px 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        font-weight: 600;
+        text-align: center;
+        margin-left: 0;
+      }
+
+      .dropdown {
+        width: 100%;
+        margin-left: 0;
+
+        .navLink {
+          svg {
+            margin-left: 5px;
+          }
+        }
+
+        .dropdownContent {
+          width: 90% !important;
+          margin: 0 auto !important;
+          background-color: #f2f2f2 !important;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+
+          a {
+            padding: 12px 15px;
+            width: 100%;
+            text-align: center;
+            justify-content: center;
+            font-size: 16px;
+            color: #333;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+
+            &:last-child {
+              border-bottom: none;
+            }
+
+            &:hover {
+              background-color: rgba(76, 175, 80, 0.1);
+              border-left: 3px solid #4caf50;
+              padding-left: 20px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .leftSection {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  @media (max-width: 768px) {
+    .headerContainer {
+      padding: 10px 15px;
+    }
+
+    .leftSection {
+      flex-direction: row;
+      align-items: center;
+    }
+
+    .telContainer {
+      margin-right: 0;
+    }
+
+    .menuIcon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .anchorsContainer {
+      display: none;
+
+      &.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #fff;
+        z-index: 100;
+      }
+    }
+  }
+}
+
+.dropdown {
+  position: relative;
+
+  .navLink {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .dropdownContent {
+    position: absolute;
+    top: 100%;
+    background-color: #fff;
+    min-width: 280px;
+    max-width: 90vw;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 8px 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: visibility 0.3s ease, opacity 0.3s ease;
+    pointer-events: none;
+
+    @media (min-width: 1201px) {
+      left: 0;
+      transform: none;
+    }
+
+    @media (min-width: 920px) and (max-width: 1200px) {
+      left: auto;
+      right: 0;
+      transform: none;
+    }
+
+    &.open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    &.closed {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    a {
+      color: #333;
+      padding: 14px 20px;
+      text-decoration: none;
+      display: block;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      border-left: 3px solid transparent;
+      white-space: normal;
+      line-height: 1.4;
+      word-wrap: break-word;
+
+      &:hover {
+        background-color: #f8f8f8;
+        border-left: 3px solid #2ecc71;
+        padding-left: 25px;
+      }
+    }
+  }
+}
+
+.anchorsContainer .dropdown:nth-child(1) .dropdownContent {
+  @media (min-width: 1051px) and (max-width: 1200px) {
+    left: 0;
+    transform: none;
+    right: auto;
+  }
+}
+
+.anchorsContainer .dropdown:nth-child(2) .dropdownContent {
+  @media (min-width: 1051px) and (max-width: 1200px) {
+    left: 0;
+    transform: none;
+    right: auto;
+  }
+}
+
+.FaChevronDown,
+.FaChevronUp {
+  @media (max-width: 1100px) {
+    transform: scale(0.9);
+  }
+
+  @media (max-width: 900px) {
+    transform: scale(0.8);
+  }
+}
+
+/* Добавляем стили для блокировки скролла body при открытом меню */
+body.menu-open {
+  overflow: hidden;
+}
+
+// Специальный стиль для страниц услуг
+@media (max-width: 1050px) {
+  .Header .headerContainer {
+    min-height: 60px;
+  }
+}
+
+/* Исправляем перенос номера телефона на новую строку */
+@media (max-width: 480px) {
+  .Header .headerContainer {
+    .telContainer {
+
+      a.phone-number {
+        font-size: 20px;
+      }
+    }
+  }
+}
+
+@media (max-width: 1050px) {
+  .headerLayout {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  // Исправляем стили для всех страниц
+  .Header,
+  .carDetailHeader {
+    width: 100%;
+    overflow-x: visible;
+
+    &:not(.home-header) {
+      .headerContainer {
+        max-width: 100%;
+        box-sizing: border-box;
+      }
+
+      .menuIcon {
+        display: block !important;
+        position: relative;
+        z-index: 1010;
+      }
+
+      .anchorsContainer {
+        top: 65px;
+        width: 100%;
+        left: 0;
+        right: 0;
+        margin: 0;
+        padding: 10px 0;
+
+        &.open {
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        // Сдвигаем пункты "Услуги" и "Техника" вправо
+        .services-menu-item,
+        .equipment-menu-item {
+          // padding-right: 25px !important;
+          text-align: right;
+          justify-content: flex-end;
+        }
+      }
+    }
+  }
+
+  // Специальные стили для страницы CarDetail
+  // Изменяем селектор, чтобы он соответствовал классу в компоненте
+  .carDetail {
+    .Header,
+    header {
+      .anchorsContainer {
+        position: fixed !important;
+        top: 65px !important;
+        width: 100% !important;
+
+        &.open {
+          display: flex !important;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+      }
+
+      .menuIcon {
+        display: block !important;
+      }
+    }
+  }
+
+  // Добавляем стили для страницы Services
+  .Service2 {
+    .Header {
+      // Те же стили, что и для CarDetail
+      .anchorsContainer {
+        position: fixed !important;
+        top: 65px !important;
+        width: 100% !important;
+
+        &.open {
+          display: flex !important;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+      }
+    }
+  }
+
+  // Стили для выравнивания пунктов меню на главной странице
+  .Header {
+    .anchorsContainer {
+      // Общие стили для пунктов меню на мобильных устройствах
+      .services-menu-item,
+      .equipment-menu-item {
+        text-align: right !important;
+        justify-content: flex-end !important;
+        // padding-right: 25px !important;
+      }
+    }
+  }
+
+  // Стили для главной страницы (home)
+  .home-page .Header,
+  .home-header {
+    .anchorsContainer {
+
+      a,
+      .navLink {
+        left: 10px;
+
+        // Базовое выравнивание по центру
+        text-align: center !important;
+        justify-content: center !important;
+      }
+
+      // Специальное выравнивание для услуг и техники
+      .services-menu-item,
+      .equipment-menu-item {
+        text-align: right !important;
+        justify-content: flex-end !important;
+        // padding-right: 25px !important;
+      }
+    }
+  }
+}
+
+// Улучшаем стили мобильного дропдауна
+@media (max-width: 1050px) {
+  .Header .anchorsContainer {
+    .dropdown {
+      width: 100%;
+
+      .navLink {
+        margin: 0;
+        padding: 12px 15px;
+        font-size: 17px;
+        font-weight: 600;
+        text-align: center;
+        justify-content: center;
+        display: flex;
+        align-items: center;
+        width: 100%;
+
+        svg {
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+}
+
+// Медиа-запрос для планшетов
+@media (min-width: 1051px) and (max-width: 1199px) {
+  .anchorsContainer {
+    gap: 10px;
+
+    a,
+    .navLink {
+      font-size: 13px !important;
+      padding: 0 10px;
+    }
+  }
+  .dropdown {
+    .dropdownContent {
+      min-width: 280px !important; // Уменьшаем ширину дропдауна
+      left: 0 !important;
+
+      a {
+        font-size: 14px !important;
+      }
+    }
+  }
+}
+
+// Оставляем стандартные размеры для главной страницы
+.Header:not(.inner-page-header) {
+  @media (min-width: 1200px) {
+    .anchorsContainer {
+      a,
+      .navLink {
+        font-size: 16px;
+        padding: 0 15px;
+      }
+    }
+
+    .telContainer {
+      a {
+        font-size: 1.4rem;
+      }
+    }
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 1px 4px rgba(255, 107, 53, 0.3);
+  }
+  50% {
+    transform: scale(1.03);
+    box-shadow: 0 2px 6px rgba(255, 107, 53, 0.4);
+  }
+}
+
+// Дополнительные стили для лучшей адаптивности в навигации
+@media (max-width: 1200px) {
+  .Header:not(.inner-page-header) .anchorsContainer {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .Header:not(.inner-page-header) .anchorsContainer {
+    gap: 12px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .Header:not(.inner-page-header) .anchorsContainer {
+    gap: 8px;
+  }
+}
+
+// Стили для популярной ссылки "Услуги" с бейджем
+.services-dropdown {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .popular-badge {
+    background: linear-gradient(135deg, #ff6b35, #f7931e);
+    color: white;
+    font-size: 8px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    position: absolute;
+    top: -10px;
+    right: -8px;
+    white-space: nowrap;
+    box-shadow: 0 1px 4px rgba(255, 107, 53, 0.3);
+    animation: pulse 2s infinite;
+    z-index: 10;
+
+    @media (max-width: 1200px) {
+      font-size: 7px;
+      padding: 2px 5px;
+      top: -9px;
+      right: -6px;
+    }
+
+    @media (max-width: 1100px) {
+      font-size: 6px;
+      padding: 1px 4px;
+      top: -8px;
+      right: -4px;
+      border-radius: 6px;
+    }
+
+    @media (max-width: 1050px) {
+      position: relative;
+      top: 0;
+      right: 0;
+      margin-bottom: 3px;
+      font-size: 8px;
+      padding: 2px 6px;
+      border-radius: 8px;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 7px;
+      padding: 2px 5px;
+    }
+  }
+
+  // Стили для ссылки услуг
+  .navLink {
+    color: #333 !important;
+    font-weight: 700 !important;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    position: relative;
+    white-space: nowrap;
+
+    &:hover {
+      color: #4caf50 !important;
+      background: rgba(76, 175, 80, 0.1);
+      transform: translateY(-1px);
+    }
+
+    @media (max-width: 1200px) {
+      padding: 6px 10px;
+      font-size: 14px !important;
+    }
+
+    @media (max-width: 1100px) {
+      padding: 5px 8px;
+      font-size: 13px !important;
+    }
+
+    @media (max-width: 1050px) {
+      margin: 3px 15px;
+      width: calc(100% - 30px);
+      padding: 10px 16px;
+      font-size: 16px !important;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    @media (max-width: 480px) {
+      margin: 3px 10px;
+      width: calc(100% - 20px);
+      padding: 8px 12px;
+      font-size: 15px !important;
+    }
+  }
+
+  @media (max-width: 1050px) {
+    width: 100%;
+    margin: 8px 0;
+
+    // Убираем бейдж "популярное" в мобильном меню
+    .popular-badge {
+      display: none !important;
+    }
+
+    .navLink {
+      width: 100%;
+      margin: 0;
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    margin: 6px 0;
+  }
+}
+
+// Стили для услуги заборов внутри дропдауна
+.fencing-service {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  .service-badge {
+    font-size: 9px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+
+    &.hit-badge {
+      margin-right: 10px;
+      background: linear-gradient(135deg, #e74c3c, #c0392b);
+      color: white;
+      box-shadow: 0 1px 3px rgba(231, 76, 60, 0.3);
+    }
+  }
+
+  &:hover {
+    .service-badge {
+      transform: scale(1.05);
+    }
+  }
+}
+
+@media (max-width: 1050px) {
+  .navlink-active {
+    // left: 10px !important;
+  }
+  .navlink-active2 {
+    // margin-left: 15px !important;
+  }
+}
+

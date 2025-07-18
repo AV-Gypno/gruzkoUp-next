@@ -1,0 +1,58 @@
+.OurPartners {
+  padding: 50px 0;
+  background-color: #f8f9fa;
+
+  .OurPartnersContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h3 {
+      font-size: 38px;
+      line-height: 130%;
+      text-transform: uppercase;
+      color: #2e302e;
+      margin-bottom: 40px;
+
+      @media (max-width: 384px) {
+        font-size: 30px;
+      }
+    }
+
+    .OurPartnersList {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 30px; /* Увеличен отступ между логотипами */
+
+      .partnerLogo {
+        width: 150px; /* Установлен фиксированный размер для всех логотипов */
+        height: 150px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 10px;
+        border-radius: 20px;
+        background-color: #ffffff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+        opacity: 0.9;
+
+        &:hover {
+          opacity: 1;
+          transform: translateY(-5px);
+          box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        img {
+          max-width: 80%;
+          max-height: 80%;
+          object-fit: contain; /* Сохраняет пропорции изображения */
+        }
+      }
+    }
+  }
+}

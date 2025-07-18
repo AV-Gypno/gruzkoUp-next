@@ -1,0 +1,995 @@
+.Cars {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f9f9f9;
+  overflow-x: hidden;
+
+  @media (max-width: 676px) {
+    margin-bottom: 30px;
+    margin-top: 60px;
+  }
+
+  .section-title {
+    font-family: "Russo One", sans-serif;
+    font-size: 28px;
+    line-height: 130%;
+    text-transform: uppercase;
+    color: #2e302e;
+    margin-bottom: 30px;
+    text-align: center;
+    position: relative;
+    font-weight: bold;
+
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, #2e7d32, #81c784);
+      border-radius: 2px;
+    }
+
+    @media (max-width: 384px) {
+      font-size: 30px;
+    }
+  }
+
+  .cars-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 30px;
+    width: 90%;
+    max-width: 1400px;
+    margin: 0 auto;
+
+    @media (max-width: 992px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+      width: 95%;
+    }
+  }
+
+  .car-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    height: 100%;
+    position: relative;
+    opacity: 1;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, #4caf50, #81c784);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.6s ease;
+    }
+
+    &:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(76, 175, 80, 0.15);
+
+      &:before {
+        transform: scaleX(1);
+      }
+
+      .car-image {
+        transform: scale(1.08);
+        opacity: 1;
+      }
+
+      .detail-button {
+        cursor: pointer;
+        background-color: #4caf50;
+        color: white;
+
+        svg {
+          transform: translateX(5px);
+        }
+      }
+    }
+
+    &.hovered {
+      z-index: 10;
+    }
+
+    .car-card-inner {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .car-image-container {
+      position: relative;
+      height: 220px;
+      overflow: hidden;
+      background: #f1f1f1;
+
+      .car-image {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        transition: transform 0.8s ease, opacity 0.5s ease;
+        opacity: 0.85;
+      }
+
+      .car-overlay {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+
+        .price-tag {
+          display: inline-block;
+          background: rgba(76, 175, 80, 0.9);
+          color: white;
+          padding: 8px 15px;
+          font-weight: bold;
+          border-radius: 20px;
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+          font-family: "Montserrat", sans-serif;
+          font-size: 14px;
+          backdrop-filter: blur(5px);
+          animation: fadeInRight 0.6s ease-out forwards;
+          animation-delay: calc(var(--index, 0) * 0.1s + 0.3s);
+        }
+      }
+    }
+
+    .car-content {
+      padding: 25px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+
+      .car-title {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 600;
+        font-size: 22px;
+        color: #2e302e;
+        margin-bottom: 15px;
+        position: relative;
+        padding-bottom: 12px;
+
+        &:after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 40px;
+          height: 3px;
+          background-color: #4caf50;
+          border-radius: 1.5px;
+          transform: scaleX(1);
+        }
+
+        @media (max-width: 1330px) {
+          font-size: 20px;
+        }
+      }
+
+      .car-details {
+        flex-grow: 1;
+        margin-bottom: 20px;
+
+        .car-description {
+          font-family: "Montserrat", sans-serif;
+          font-size: 16px;
+          line-height: 150%;
+          color: #2e302e;
+          opacity: 0.8;
+          margin-bottom: 15px;
+
+          @media (max-width: 1330px) {
+            font-size: 15px;
+          }
+        }
+
+        .car-specs {
+          font-family: "Montserrat", sans-serif;
+          font-size: 15px;
+          line-height: 150%;
+          color: #2e302e;
+          opacity: 0.7;
+          padding-left: 10px;
+          border-left: 3px solid #e8f5e9;
+
+          @media (max-width: 1330px) {
+            font-size: 14px;
+          }
+        }
+      }
+
+      .detail-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 12px 24px;
+        background-color: white;
+        color: #4caf50;
+        border: 2px solid #4caf50;
+        border-radius: 25px;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 600;
+        font-size: 15px;
+        text-decoration: none;
+        transition: all 0.5s ease;
+        align-self: flex-start;
+        box-shadow: 0 4px 10px rgba(76, 175, 80, 0.1);
+        opacity: 1;
+        transform: translateY(0);
+
+        svg {
+          transition: transform 0.5s ease;
+        }
+
+        &:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 8px 15px rgba(76, 175, 80, 0.2);
+        }
+
+        &:active {
+          transform: translateY(0);
+          box-shadow: 0 4px 8px rgba(76, 175, 80, 0.15);
+        }
+      }
+    }
+  }
+
+  // Специальные стили для разных размеров изображений
+  .car1, .car2, .car3, .car4, .car5, .car6, .car7, .car8, .car9 {
+    max-width: 90%;
+    max-height: 90%;
+    margin: 0 auto;
+  }
+
+  // Адаптивность для мобильных устройств
+  @media (max-width: 768px) {
+    .car-card {
+      .car-image-container {
+        height: 180px;
+      }
+
+      .car-content {
+        padding: 20px;
+
+        .car-title {
+          font-size: 18px;
+        }
+
+        .detail-button {
+          padding: 10px 20px;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}
+
+.carImg {
+  // width: 320px;
+  height: 232px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f1f1f1;
+  border-radius: 20px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  overflow: hidden;
+  margin-bottom: 20px;
+
+  img {
+    width: 100%;
+    height: auto;
+    opacity: 0.7;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+
+    &:hover {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+  }
+}
+
+.img1CAR {
+  width: 300px !important;
+  height: 162px;
+}
+
+.img2CAR {
+  width: 300px !important;
+  height: 202px !important;
+}
+
+.car2 {
+  width: 250px !important;
+}
+
+.car3 {
+  width: 250px !important;
+}
+
+.car7 {
+  width: 250px !important;
+}
+
+.detailBtn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  text-decoration: none;
+  border-radius: 25px;
+  font-weight: 500;
+  margin-top: 15px;
+  transition: all 0.3s ease;
+  border: none;
+  text-align: center;
+  min-width: 120px;
+  box-shadow: 0 2px 4px rgba(60, 144, 88, 0.3);
+
+  &:hover {
+    background-color: #4caf50;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(60, 144, 88, 0.4);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 2px rgba(60, 144, 88, 0.4);
+  }
+}
+
+.big-block:last-child .block {
+  justify-content: center;
+}
+
+.carBlock {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: #ffffff;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .carImg {
+    margin-bottom: 10px;
+    overflow: hidden;
+    border-radius: 6px;
+
+    img {
+      transition: transform 0.5s ease;
+      width: 100%;
+      height: auto;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+  }
+
+  h3 {
+    color: #333;
+    margin-bottom: 8px;
+  }
+
+  p {
+    color: #666;
+    margin-bottom: 5px;
+  }
+}
+
+// То же самое для других элементов с анимацией
+.car-description, .car-specs, .detail-button {
+  @supports (-webkit-touch-callout: none) {
+    opacity: 0.8;
+    transform: translateY(0);
+    animation: none;
+  }
+}
+
+// Новые упрощенные стили для карточек
+.simple-car-card {
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  border: 1px solid #e0e0e0;
+}
+
+.simple-car-image {
+  position: relative;
+  height: 200px;
+  background: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+  }
+
+  .simple-price-tag {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #4caf50;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-weight: bold;
+    font-size: 14px;
+  }
+}
+
+.simple-car-content {
+  padding: 15px;
+}
+
+.simple-car-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.simple-car-description {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+.simple-car-specs {
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 15px;
+  line-height: 1.4;
+  padding-left: 10px;
+  border-left: 2px solid #4caf50;
+}
+
+.simple-button {
+  display: inline-block;
+  background: #4caf50;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+}
+
+// Простая адаптивность для мобильных устройств
+@media (max-width: 768px) {
+  .cars-grid {
+    grid-template-columns: 1fr;
+    padding: 0 10px;
+  }
+
+  .simple-car-image {
+    height: 160px;
+  }
+
+  .simple-car-title {
+    font-size: 16px;
+  }
+
+  .simple-car-description,
+  .simple-car-specs {
+    font-size: 13px;
+  }
+}
+
+// Фиксированные стили для карточек с гарантированной высотой
+.fixed-car-card {
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  border: 1px solid #e0e0e0;
+  height: 450px; // Фиксированная высота для карточки
+  display: flex;
+  flex-direction: column;
+}
+
+.fixed-car-image {
+  position: relative;
+  height: 200px; // Фиксированная высота для изображения
+  background: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 180px; // Минимальная высота
+
+  &:before {
+    content: ""; // Заглушка, если что-то не загрузилось
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f0f0f0;
+    z-index: -1;
+  }
+
+  img {
+    width: 90%;
+    height: 180px;
+    object-fit: contain;
+  }
+
+  .fixed-price-tag {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #4caf50;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-weight: bold;
+    font-size: 14px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    min-width: 80px;
+    text-align: center;
+  }
+}
+
+.fixed-car-content {
+  padding: 15px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 230px; // Минимальная высота контента
+}
+
+.fixed-car-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #333;
+  height: 52px; // Фиксированная высота для заголовка (2 строки)
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.fixed-car-description-box {
+  flex: 1;
+  min-height: 120px; // Минимальная высота для описания
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.fixed-car-description {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 15px;
+  line-height: 1.4;
+  height: 60px; // Высота на 3 строки
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+// Новый блок для технических характеристик
+.fixed-car-specs-block {
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 10px 0 15px;
+  border-left: 3px solid #4caf50;
+}
+
+.fixed-car-specs {
+  font-size: 16px; // Увеличенный размер шрифта
+  font-weight: 600; // Полужирный текст
+  color: #333; // Более темный цвет для лучшей читаемости
+  line-height: 1.4;
+  margin: 0;
+  text-align: center;
+}
+
+.fixed-button {
+  display: block;
+  width: 100%;
+  max-width: 150px;
+  margin: 0 auto;
+  background: #4caf50;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  height: 35px; // Фиксированная высота кнопки
+  line-height: 20px;
+}
+
+// Адаптивность с сохранением фиксированных высот
+@media (max-width: 768px) {
+  .cars-grid {
+    grid-template-columns: 1fr;
+    padding: 0 10px;
+  }
+
+  .fixed-car-card {
+    height: 400px; // Немного меньше для мобильных
+  }
+
+  .fixed-car-image {
+    height: 160px;
+    min-height: 160px;
+
+    img {
+      height: 140px;
+    }
+  }
+
+  .fixed-car-content {
+    min-height: 210px;
+  }
+
+  .fixed-car-title {
+    font-size: 16px;
+    height: 46px;
+  }
+
+  .fixed-car-description-box {
+    min-height: 100px;
+  }
+
+  .fixed-car-description,
+  .fixed-car-specs {
+    font-size: 15px; // Немного меньше на мобильных, но все равно заметно
+  }
+}
+
+// Новая максимально простая сетка
+.basic-cars-grid {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  max-width: 1200px;
+  margin: 0 auto;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Новая максимально простая карточка
+.basic-car-card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background: white;
+  padding: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+// Заголовок
+.basic-car-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0 0 15px 0;
+  text-align: center;
+  color: #333;
+}
+
+// Контейнер изображения
+.basic-car-image {
+  margin-bottom: 15px;
+  text-align: center;
+  background: #f8f8f8;
+  border-radius: 8px;
+  padding: 10px;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    max-width: 100%;
+    max-height: 160px;
+    object-fit: contain;
+  }
+}
+
+// Цена - яркий блок
+.basic-car-price {
+  background: #4caf50;
+  color: white;
+  padding: 8px;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+// Обычный текст описания
+.basic-car-text {
+  background: #f8f8f8;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  color: #555;
+  line-height: 1.4;
+}
+
+// Выделенный блок грузоподъемности
+.basic-car-capacity {
+  background: #e8f5e9;
+  border-left: 4px solid #4caf50;
+  padding: 12px;
+  margin-bottom: 15px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+}
+
+// Кнопка
+.basic-car-button {
+  background: #4caf50;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+  margin-top: auto; // Прижимает кнопку к низу карточки
+
+  &:hover {
+    background: #3d8b40;
+  }
+}
+
+// Мобильные стили для уверенности
+@media (max-width: 768px) {
+  .basic-car-card {
+    padding: 12px;
+    margin-bottom: 15px;
+  }
+
+  .basic-car-title {
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+
+  .basic-car-image {
+    height: 150px;
+
+    img {
+      max-height: 130px;
+    }
+  }
+
+  .basic-car-text,
+  .basic-car-capacity,
+  .basic-car-price,
+  .basic-car-button {
+    margin-bottom: 12px;
+    font-size: 14px;
+  }
+
+  .basic-car-capacity {
+    font-size: 15px;
+    padding: 10px;
+  }
+}
+
+// Современный минималистичный стиль с зеленым цветом
+.Cars {
+  background-color: #ffffff;
+
+  .section-title {
+    font-size: 32px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #1d1d1f;
+    letter-spacing: -0.5px;
+
+    // Адаптивность для маленьких экранов
+    @media (max-width: 480px) {
+      font-size: 24px;
+      margin-bottom: 20px;
+      padding: 0 10px;
+    }
+
+    @media (max-width: 380px) {
+      font-size: 22px;
+      line-height: 1.3;
+      margin-bottom: 20px;
+      padding: 0 5px;
+    }
+  }
+}
+
+// Современная сетка карточек
+.modern-cars-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 21px;
+}
+
+// Современная карточка в минималистичном стиле
+.modern-car-card {
+  background-color: #ffffff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
+
+  &:hover {
+    transform: translateY(-3px);
+  }
+}
+
+.modern-car-image-container {
+  position: relative;
+  background-color: #f5f5f7; // Светло-серый фон для изображений (как у Apple)
+  height: 190px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modern-car-image {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  transition: opacity 0.3s ease;
+
+  &.loaded {
+    opacity: 1;
+  }
+
+  &:not(.loaded) {
+    opacity: 0;
+  }
+}
+
+.modern-car-loader {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #e0e0e0;
+  border-top-color: #34c759;
+  animation: spin 1s linear infinite;
+}
+
+.modern-car-content {
+  padding: 24px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.modern-car-title {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  margin: 0 0 4px;
+  color: #1d1d1f;
+}
+
+.modern-car-description {
+  font-size: 14px;
+  line-height: 1.4;
+  color: #86868b;
+  margin-bottom: 12px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.modern-car-capacity {
+  font-size: 14px;
+  color: #515154;
+  margin-bottom: 24px;
+}
+
+.modern-car-price {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: rgba(52, 199, 89, 0.85); // Apple зеленый
+  color: white;
+  font-weight: 500;
+  padding: 6px 12px;
+  font-size: 14px;
+  border-bottom-left-radius: 10px;
+}
+
+.modern-car-button {
+  margin-top: auto;
+  background-color: #ffffff;
+  color: #34c759; // Apple зеленый
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none;
+  padding: 8px 0;
+  border: 1px solid #34c759;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: #34c759;
+    color: #ffffff;
+  }
+}
+
+.image-error-text {
+  position: absolute;
+  color: #86868b;
+  font-size: 14px;
+  text-align: center;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// Адаптивность для мобильных устройств
+@media (max-width: 600px) {
+  .modern-cars-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .modern-car-image-container {
+    height: 180px;
+  }
+}

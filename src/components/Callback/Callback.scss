@@ -1,0 +1,397 @@
+.callback-widget {
+  position: fixed;
+  bottom: 52px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 100000;
+
+  &:before {
+    border: none;
+    background-clip: padding-box;
+    animation: 4s linear 0s normal none infinite running spin;
+    border-color: #f9bb00 transparent transparent;
+    border-radius: 50%;
+    border-right: 3px solid transparent;
+    border-style: solid;
+    border-width: 3px;
+    bottom: -15px;
+    content: "";
+    left: -15px;
+    position: absolute;
+    right: -15px;
+    top: -15px;
+  }
+
+  &:after {
+    border: none;
+    background-clip: padding-box;
+    animation: 2s linear 0s normal none infinite running spin;
+    border-color: #f9bb00 transparent transparent;
+    border-image: none;
+    border-radius: 50%;
+    border-right: 2px solid transparent;
+    border-style: solid;
+    border-width: 2px;
+    bottom: -5px;
+    content: "";
+    left: -5px;
+    position: absolute;
+    right: -5px;
+    top: -5px;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: absolute;
+  transition: transform 0.3s ease,
+  opacity 0.3s ease;
+  box-shadow: 0 20px 15px -10px rgba(0, 0, 0, 0.2),
+  inset 0 -50px 20px -20px rgba(0, 0, 0, 0.2);
+}
+
+.menu {
+  transform: translateY(20px); // Изначально ниже основного кружка
+  opacity: 0;
+  visibility: hidden;
+}
+
+.menu.open {
+  transform: translateY(-80px); // Поднимаем кружки на достаточное расстояние
+  opacity: 1;
+  visibility: visible;
+  transition: transform 0.5s ease,
+  opacity 0.3s 0.1s ease;
+}
+
+.menu.open1 {
+  transform: translateY(-150px); // Поднимаем кружки на достаточное расстояние
+  opacity: 1;
+  visibility: visible;
+  transition: transform 0.5s ease,
+  opacity 0.3s 0.1s ease;
+}
+
+.menu.open2 {
+  transform: translateY(-221px); // Поднимаем кружки на достаточное расстояние
+  opacity: 1;
+  visibility: visible;
+  transition: transform 0.5s ease,
+  opacity 0.3s 0.1s ease;
+}
+
+.menu.open3 {
+  transform: translateY(-293px); // Поднимаем кружки на достаточное расстояние
+  opacity: 1;
+  visibility: visible;
+  transition: transform 0.5s ease,
+  opacity 0.3s 0.1s ease;
+}
+
+.menu.open4 {
+  transform: translateY(-363px); // Поднимаем кружки на достаточное расстояние
+  opacity: 1;
+  visibility: visible;
+  transition: transform 0.5s ease,
+  opacity 0.6s 0.1s ease;
+}
+
+.menu.open5 {
+  transform: translateY(-432px); // Поднимаем кружки на достаточное расстояние
+  opacity: 1;
+  visibility: visible;
+  transition: transform 0.5s ease,
+  opacity 0.6s 0.1s ease;
+}
+
+.openNo {
+  transform: translateY(0px); // Поднимаем кружки на достаточное расстояние
+  opacity: 0;
+  visibility: visible;
+  transition: transform 0.5s ease,
+  opacity 0.6s 0.1s ease;
+}
+
+.menu.open1No {
+  transform: translateY(0px); // Поднимаем кружки на достаточное расстояние
+  opacity: 0;
+  visibility: visible;
+}
+
+.menu.open2No {
+  transform: translateY(0px); // Поднимаем кружки на достаточное расстояние
+  opacity: 0;
+  visibility: visible;
+}
+
+.menu.open3No {
+  transform: translateY(0px); // Поднимаем кружки на достаточное расстояние
+  opacity: 0;
+  visibility: visible;
+}
+
+.menu.open4No {
+  transform: translateY(0px); // Поднимаем кружки на достаточное расстояние
+  opacity: 0;
+  visibility: visible;
+}
+
+.phone {
+  z-index: 1000;
+  background-color: #51b554;
+  display: flex;
+  position: relative;
+}
+
+.textInfo {
+  position: absolute;
+  width: 60;
+  height: 60px;
+  background-color: white;
+  color: #2e302e;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 100;
+  border-radius: 50%;
+  font-family: Montserrat;
+  animation-duration: 9s;
+  animation-iteration-count: infinite;
+  animation-name: textInfoAnim;
+  animation-play-state: running;
+  animation-timing-function: ease-in-out;
+  transform: scale(0, 0);
+  opacity: 0;
+}
+
+@keyframes textInfoAnim {
+  0% {
+    transform: scale(0, 0);
+    opacity: 0;
+  }
+
+  40% {
+    transform: scale(0, 0) rotate(0deg);
+    opacity: 0;
+  }
+
+  50% {
+    transform: scale(1) rotate(360deg);
+    opacity: 1;
+  }
+
+  79% {
+    transform: scale(1) rotate(360deg);
+    opacity: 1;
+  }
+
+  89% {
+    transform: scale(0, 0) rotate(-360deg);
+    opacity: 0;
+  }
+}
+
+.iconPhone {
+  line-height: 100px;
+  font-size: 50px;
+}
+
+.shake.shake-constant {
+  animation: shake-base 1800ms ease-in-out 0s infinite;
+}
+
+.iconPhone {
+  width: 50px;
+  position: relative;
+  top: -8px;
+  height: 50px;
+}
+
+@keyframes shake-base {
+  0% {
+    transform: translate(0px, 0px) rotate(0deg);
+  }
+
+  9% {
+    transform: translate(0px, 0px) rotate(0deg);
+  }
+
+  10% {
+    transform: translate(0.5px, -0.5px) rotate(-0.5deg);
+  }
+
+  12% {
+    transform: translate(0.5px, -1.5px) rotate(-0.5deg);
+  }
+
+  14% {
+    transform: translate(-0.5px, 0.5px) rotate(-1.5deg);
+  }
+
+  16% {
+    transform: translate(1.5px, -0.5px) rotate(0.5deg);
+  }
+
+  18% {
+    transform: translate(1.5px, 1.5px) rotate(0.5deg);
+  }
+
+  20% {
+    transform: translate(-2.5px, 0.5px) rotate(0.5deg);
+  }
+
+  22% {
+    transform: translate(-0.5px, 0.5px) rotate(-0.5deg);
+  }
+
+  24% {
+    transform: translate(1.5px, -1.5px) rotate(0.5deg);
+  }
+
+  26% {
+    transform: translate(-2.5px, 1.5px) rotate(-0.5deg);
+  }
+
+  28% {
+    transform: translate(-2.5px, 0.5px) rotate(-0.5deg);
+  }
+
+  30% {
+    transform: translate(1.5px, 1.5px) rotate(-0.5deg);
+  }
+
+  32% {
+    transform: translate(0.5px, 1.5px) rotate(0.5deg);
+  }
+
+  34% {
+    transform: translate(1.5px, 1.5px) rotate(-0.5deg);
+  }
+
+  36% {
+    transform: translate(1.5px, -1.5px) rotate(-0.5deg);
+  }
+
+  38% {
+    transform: translate(-1.5px, 1.5px) rotate(0.5deg);
+  }
+
+  40% {
+    transform: translate(0.5px, -2.5px) rotate(-0.5deg);
+  }
+
+  42% {
+    transform: translate(-2.5px, -0.5px) rotate(-0.5deg);
+  }
+
+  44% {
+    transform: translate(-2.5px, -0.5px) rotate(-0.5deg);
+  }
+
+  46% {
+    transform: translate(-1.5px, -0.5px) rotate(-0.5deg);
+  }
+
+  48% {
+    transform: translate(-2.5px, 1.5px) rotate(-0.5deg);
+  }
+
+  50% {
+    transform: translate(-0.5px, -2.5px) rotate(0.5deg);
+  }
+
+  52% {
+    transform: translate(0.5px, 1.5px) rotate(-1.5deg);
+  }
+
+  54% {
+    transform: translate(-0.5px, -2.5px) rotate(0.5deg);
+  }
+
+  56% {
+    transform: translate(-0.5px, 0.5px) rotate(-0.5deg);
+  }
+
+  58% {
+    transform: translate(-0.5px, 1.5px) rotate(0.5deg);
+  }
+
+  60% {
+    transform: translate(0.5px, -2.5px) rotate(0.5deg);
+  }
+
+  62% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+
+  98% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+}
+
+#telegram {
+  background-image: url("../../assets/assets/callbackicons/telegram.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+#viber {
+  background-image: url("../../assets/assets/callbackicons/viber.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+#whatsup {
+  background-image: url("../../assets/assets/callbackicons/whatsup.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+#phone {
+  background-image: url("../../assets/assets/callbackicons/phone.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+#gmail {
+  background-image: url("../../assets/assets/callbackicons/gmail.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+#form {
+  background-image: url("../../assets/assets/callbackicons/form1.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: black;
+  background-position: center;
+}

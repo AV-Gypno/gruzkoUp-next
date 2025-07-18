@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Sigmar&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.Main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8f8f8;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding-top: 20px;
+
+  @media (max-width: 480px) {
+    padding: 40px 10px;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1200px;
+  width: 100%;
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  min-height: 680px;
+}
+
+.textSection {
+  padding: 20px;
+  text-align: center;
+}
+
+.gruzMain {
+  font-family: 'Sigmar', cursive;
+  font-size: 4rem;
+  font-weight: bold;
+  color: #4caf50; // Apple blue
+  text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+  position: relative;
+
+  @media (max-width: 480px) {
+    font-size: 3rem;
+  }
+}
+
+.co {
+  font-size: 1.5rem;
+  font-weight: normal;
+  color: #333;
+  position: absolute;
+  top: 0;
+  right: -30px;
+}
+
+.highlight {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #333;
+  margin: 20px 0;
+}
+
+.subText {
+  font-size: 1.2rem;
+  color: #666;
+  margin: 10px 0;
+}
+
+#p1, .p4 {
+  font-size: 1.2rem;
+  margin: 10px 0;
+}
+
+.videoSection {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0;
+  // box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-top-right-radius: 10px;
+  overflow: hidden;
+}
+
+.mainVideo {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+.mainButton {
+  background-color: #007aff;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.mainButton:hover {
+  background-color: #005bb5;
+}
+
+.appleButton {
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  padding: 20px 50px;
+  font-size: 18px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-top: 40px;
+
+  &:hover {
+    background-color: #4caf50;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  }
+}
+
+@media (min-width: 768px) {
+  .content {
+    flex-direction: row;
+  }
+
+  .textSection {
+    flex: 1;
+    text-align: left;
+    padding: 40px;
+  }
+
+  .videoSection {
+    flex: 1;
+  }
+}
+
+.blackText {
+  font-family: 'Sigmar', cursive;
+  color: orange; // Устанавливает цвет текста в черный
+}
+
+@media (max-width: 768px) {
+  .highlight {
+    text-align: center !important;
+  }
+}

@@ -1,0 +1,426 @@
+@import url('https://fonts.googleapis.com/css2?family=Sigmar&display=swap');
+
+.loader-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #1a5e1d 0%, #4caf50 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+// Сцена анимации
+.loader-scene {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  margin-bottom: 40px;
+}
+
+// Городской силуэт
+.city-skyline {
+  position: absolute;
+  width: 100%;
+  height: 80px;
+  bottom: 70px;
+  display: flex;
+  justify-content: space-around;
+  perspective: 300px;
+}
+
+.building {
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 40px;
+  bottom: 0;
+  border-radius: 3px 3px 0 0;
+  transform-style: preserve-3d;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  animation: cityPulse 3s infinite alternate;
+
+  &-1 {
+    height: 60px;
+    animation-delay: 0.1s;
+  }
+
+  &-2 {
+    height: 80px;
+    animation-delay: 0.2s;
+  }
+
+  &-3 {
+    height: 100px;
+    animation-delay: 0.3s;
+  }
+
+  &-4 {
+    height: 70px;
+    animation-delay: 0.4s;
+  }
+
+  &-5 {
+    height: 90px;
+    animation-delay: 0.5s;
+  }
+
+  &-6 {
+    height: 50px;
+    animation-delay: 0.6s;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 10%;
+    left: 10%;
+    background-color: rgba(255, 255, 255, 0.1);
+    z-index: -1;
+    filter: blur(4px);
+  }
+}
+
+// Дорога
+.road {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 70px;
+  background-color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 300px;
+  transform: rotateX(30deg);
+  box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.road-line {
+  position: absolute;
+  width: 50px;
+  height: 5px;
+  background-color: rgba(255, 255, 255, 0.7);
+  margin: 0 20px;
+  animation: roadMove 1s linear infinite;
+}
+
+@keyframes roadMove {
+  0% {
+    transform: translateX(100vw);
+  }
+  100% {
+    transform: translateX(-100vw);
+  }
+}
+
+// Анимация грузовика
+.truck-animation {
+  position: absolute;
+  width: 150px;
+  height: 70px;
+  bottom: 35px;
+  left: calc(50% - 75px);
+  z-index: 10;
+}
+
+.truck {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  animation: truckBounce 1s infinite alternate;
+}
+
+.truck-container {
+  position: absolute;
+  width: 70px;
+  height: 40px;
+  bottom: 15px;
+  right: 10px;
+  background-color: #f8f8f8;
+  border: 2px solid #333;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.truck-cabin {
+  position: absolute;
+  width: 40px;
+  height: 30px;
+  bottom: 15px;
+  left: 15px;
+  background-color: #f8f8f8;
+  border: 2px solid #333;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 5px;
+}
+
+.truck-wheel {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #111;
+  bottom: 5px;
+  animation: wheelRotate 0.5s infinite linear;
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: 60%;
+    height: 60%;
+    top: 20%;
+    left: 20%;
+    border-radius: 50%;
+    background-color: #555;
+  }
+}
+
+.front-wheel {
+  left: 25px;
+}
+
+.back-wheel {
+  right: 25px;
+}
+
+.truck-light {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background-color: #ffea00;
+  border-radius: 50%;
+  bottom: 30px;
+  left: 15px;
+  animation: lightFlicker 0.2s infinite alternate;
+  box-shadow: 0 0 10px 5px rgba(255, 234, 0, 0.5);
+}
+
+.truck-box-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 90%;
+  height: 90%;
+  padding: 2px;
+}
+
+.box {
+  width: 15px;
+  height: 15px;
+  margin: 2px;
+  animation: boxPulse 0.6s infinite alternate;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+// Контент лоадера
+.loader-content {
+  max-width: 300px;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.loader-logo {
+  margin-bottom: 20px;
+}
+
+.loader-title {
+  font-family: 'Sigmar', sans-serif;
+  font-size: 3rem;
+  margin: 0;
+  letter-spacing: 2px;
+  animation: titlePulse 2s infinite alternate;
+
+  .gruz {
+    color: white;
+    font-size: 1.2em;
+    display: inline-block;
+    font-family: 'Sigmar', sans-serif;
+    margin-right: -0.1em;
+    font-weight: bold;
+  }
+
+  .co {
+    color: orange;
+    display: inline-block;
+    margin-left: -0.01em;
+    position: relative;
+    //   top: -0.051em;
+    right: -0.3em;
+    font-weight: bold;
+  }
+}
+
+.loader-progress-bar {
+  position: relative;
+  width: 100%;
+  height: 20px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  margin-bottom: 15px;
+  overflow: hidden;
+}
+
+.loader-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ff9800, #ffbf00);
+  border-radius: 10px;
+  transition: width 0.2s;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20px;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+    animation: progressGlow 1s infinite;
+  }
+}
+
+.loader-percentage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.loader-text {
+  color: white;
+  font-size: 1rem;
+  text-align: center;
+  animation: textPulse 1.5s infinite alternate;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+// Анимации
+@keyframes wheelRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes truckBounce {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-2px);
+  }
+}
+
+@keyframes boxPulse {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes lightFlicker {
+  0% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes titlePulse {
+  0% {
+    transform: scale(1);
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+  }
+  100% {
+    transform: scale(1.05);
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+  }
+}
+
+@keyframes textPulse {
+  0% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes progressGlow {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes cityPulse {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-5px);
+  }
+}
+
+// Медиа-запросы
+@media (max-width: 768px) {
+  .loader-scene {
+    height: 150px;
+  }
+
+  .loader-title {
+    font-size: 2.5rem;
+  }
+
+  .city-skyline {
+    bottom: 50px;
+  }
+
+  .road {
+    height: 50px;
+  }
+
+  .truck-animation {
+    bottom: 25px;
+  }
+}
+
+.loader-progress-fill {
+  will-change: width;
+  width: 0%;
+  height: 100%;
+  background-color: #bc3836;
+  border-radius: 5px;
+  transition: width 2s cubic-bezier(0.1, 0.7, 1.0, 0.1);
+}
+
+.loader-percentage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}

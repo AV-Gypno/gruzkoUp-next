@@ -1,0 +1,62 @@
+h1 {
+  font-size: 40px;
+  padding: 30px 0;
+  display: block;
+  text-align: center;
+}
+
+h2 {
+  font-size: 32px;
+  padding: 24px 0;
+  display: block;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.container {
+  margin-top: 75px;
+}
+
+.background-grey1 {
+  background-color: var(--at-color-grey1);
+}
+
+.background-white {
+  background-color: var(--at-color-white);
+}
+
+.pt-1 {
+  padding-top: 0.25rem;
+}
+
+.pt-2 {
+  padding-top: 0.5rem;
+}
+
+.pt-3 {
+  padding-top: 1rem;
+}
+
+.pt-4 {
+  padding-top: 2rem;
+}
+
+.mt-1 {
+  margin-top: 0.25rem;
+}
+
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
+.mt-3 {
+  margin-top: 1rem;
+}
+
+.mt-4 {
+  margin-top: 2rem;
+}
+
+.section {
+  margin-top: 40px;
+}

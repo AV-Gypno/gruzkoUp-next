@@ -1,0 +1,527 @@
+// Определяем основные цвета
+$primary-color: #2ecc71;
+$primary-light: lighten($primary-color, 10%);
+$primary-dark: darken($primary-color, 10%);
+$accent-color: #f5f5f5;
+$text-color: #333;
+$light-bg: #f5f9f7;
+$border-radius-standard: 16px;
+$border-radius-small: 12px;
+$shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.08);
+
+body, html {
+  overflow-x: hidden;
+}
+
+.carDetail {
+  width: 100%;
+  overflow-x: hidden;
+
+  .loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    font-size: 1.5rem;
+    color: #666;
+  }
+
+  .interactiveBanner {
+    position: relative;
+    background: linear-gradient(135deg, #27ae60, #1abc9c);
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 20px;
+    overflow: hidden;
+
+    // Обновленный стиль паттерна для фона
+    .bannerPattern {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: radial-gradient(circle at 25px 25px, rgba(255, 255, 255, 0.2) 2%, transparent 5%),
+      radial-gradient(circle at 75px 75px, rgba(255, 255, 255, 0.2) 2%, transparent 5%);
+      background-size: 100px 100px;
+      opacity: 0.5;
+      z-index: 1;
+    }
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, rgba(46, 204, 113, 0.4) 0%, rgba(39, 174, 96, 0.8) 70%);
+      z-index: 2;
+    }
+
+    .bannerContent {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      max-width: 800px;
+
+      .gruzMain {
+        font-size: 3.5rem;
+        font-weight: 800;
+        color: white;
+        margin-bottom: 1rem;
+        letter-spacing: 2px;
+
+        .blackText {
+          color: $primary-light;
+        }
+      }
+
+      h2 {
+        font-size: 2.8rem;
+        color: white;
+        margin-bottom: 1.5rem;
+        font-weight: 600;
+      }
+
+      .highlight {
+        font-size: 1.4rem;
+        color: white;
+        margin-bottom: 1.5rem;
+        font-weight: 500;
+        background: rgba(60, 144, 88, 0.3);
+        padding: 10px 20px;
+        border-radius: $border-radius-standard;
+        backdrop-filter: blur(5px);
+        display: inline-block;
+        box-shadow: $shadow-soft;
+      }
+
+      .subText {
+        font-size: 1.2rem;
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 1rem;
+      }
+
+      .appleButton {
+        background: $primary-color;
+        color: white;
+        border: none;
+        padding: 15px 35px;
+        font-size: 1.2rem;
+        font-weight: 600;
+        border-radius: 30px;
+        cursor: pointer;
+        margin-top: 20px;
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+
+        &:hover {
+          background: $primary-light;
+          transform: translateY(-3px) scale(1.05);
+          box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        &:active {
+          transform: translateY(-1px);
+          box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+      }
+    }
+  }
+
+  .carContent {
+    padding: 60px 0;
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .breadcrumbs {
+      margin-bottom: 30px;
+
+      a {
+        color: #666;
+        text-decoration: none;
+
+        &:hover {
+          color: $primary-color;
+        }
+      }
+
+      span {
+        color: $primary-color;
+      }
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: $text-color;
+      position: relative;
+      padding-bottom: 10px;
+
+      &:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 50px;
+        height: 3px;
+        background: $primary-color;
+      }
+    }
+
+    .carDescription {
+      margin-bottom: 40px;
+      background: white;
+      padding: 25px;
+      border-radius: $border-radius-standard;
+      box-shadow: $shadow-soft;
+
+      p {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        color: #555;
+        margin-bottom: 0;
+      }
+    }
+
+    .carFeatures {
+      margin-bottom: 40px;
+
+      ul {
+        list-style: none;
+        padding: 0;
+
+        li {
+          padding: 15px 20px;
+          background: $light-bg;
+          margin-bottom: 15px;
+          border-radius: $border-radius-small;
+          font-size: 1.1rem;
+          transition: all 0.3s ease;
+          box-shadow: $shadow-soft;
+          border-left: none;
+
+          &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+          }
+        }
+      }
+    }
+
+    .carAdvantages {
+      padding: 20px 0 40px;
+
+      .advantagesGrid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+
+        .advantageCard {
+          background: #fff;
+          padding: 25px;
+          border-radius: $border-radius-standard;
+          box-shadow: $shadow-soft;
+          display: flex;
+          align-items: center;
+          transition: all 0.3s ease;
+
+          &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+          }
+
+          .advantageIcon {
+            width: 50px;
+            height: 50px;
+            background: $primary-color;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.3rem;
+            margin-right: 20px;
+            flex-shrink: 0;
+            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3);
+          }
+
+          p {
+            margin: 0;
+            font-size: 1.1rem;
+          }
+        }
+      }
+    }
+
+    .carDetailedInfo {
+      .infoContainer {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 30px;
+
+        .infoText {
+          background: white;
+          padding: 25px;
+          border-radius: $border-radius-standard;
+          box-shadow: $shadow-soft;
+
+          h3 {
+            margin-top: 0;
+            color: $primary-color;
+            margin-bottom: 15px;
+          }
+
+          p {
+            margin: 10px 0 20px;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #555;
+          }
+        }
+
+        .infoImage {
+          display: flex;
+          justify-content: center;
+
+          img {
+            border-radius: $border-radius-standard !important;
+            box-shadow: $shadow-soft !important;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+            &:hover {
+              transform: translateY(-10px) !important;
+              box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15) !important;
+            }
+          }
+        }
+      }
+    }
+
+    .carGallery {
+      margin-bottom: 40px;
+
+      .galleryContainer {
+        .mainImage {
+          width: 100%;
+          height: 400px;
+          overflow: hidden;
+          border-radius: $border-radius-standard;
+          margin-bottom: 20px;
+          border: none;
+          box-shadow: $shadow-soft;
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: transform 0.5s ease;
+
+            &:hover {
+              transform: scale(1.03);
+            }
+          }
+        }
+      }
+    }
+
+    .callToAction {
+      text-align: center;
+      padding: 50px 40px;
+      background: $light-bg;
+      border-radius: $border-radius-standard;
+      box-shadow: $shadow-soft;
+
+      h2 {
+        &:after {
+          left: 50%;
+          transform: translateX(-50%);
+        }
+      }
+
+      p {
+        margin-bottom: 30px;
+        font-size: 1.1rem;
+      }
+
+      .appleButton {
+        background: $primary-color;
+        color: white;
+        border: none;
+        padding: 15px 35px;
+        font-size: 1.2rem;
+        font-weight: 600;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+
+        &:hover {
+          background: $primary-light;
+          transform: translateY(-3px) scale(1.05);
+          box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        &:active {
+          transform: translateY(-1px);
+          box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+      }
+    }
+  }
+}
+
+// Адаптивность
+@media (max-width: 768px) {
+  .carDetail {
+    .interactiveBanner {
+      min-height: 70vh;
+
+      .bannerContent {
+        .gruzMain {
+          font-size: 2.8rem;
+        }
+
+        h2 {
+          font-size: 2.2rem;
+        }
+
+        .highlight {
+          font-size: 1.2rem;
+        }
+
+        .subText {
+          font-size: 1rem;
+        }
+      }
+    }
+
+    .carContent {
+      .carAdvantages {
+        .advantagesGrid {
+          grid-template-columns: 1fr;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .carDetail {
+    .carContent {
+      .carDetailedInfo {
+        .infoContainer {
+          grid-template-columns: 1fr 1fr 1fr;
+        }
+      }
+    }
+  }
+}
+
+.car-random-image {
+  width: 50%;
+  height: 50%;
+  object-fit: cover;
+}
+
+.related-cars-section {
+  padding: 30px 0;
+  background-color: #f9f9f9;
+  overflow: hidden !important;
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+    overflow: hidden !important;
+  }
+
+  .section-title {
+    text-align: center;
+    margin-bottom: 30px;
+    font-family: "Russo One", sans-serif;
+    font-size: 28px;
+    line-height: 130%;
+    color: #2e302e;
+    text-transform: uppercase;
+    font-weight: bold;
+
+    @media (max-width: 768px) {
+      font-size: 22px;
+      margin-bottom: 20px;
+    }
+  }
+
+  .Cars {
+    display: block !important;
+    margin-top: 0 !important;
+    margin-bottom: 20px !important;
+    overflow: hidden !important;
+
+    @media (max-width: 676px) {
+      margin-bottom: 20px !important;
+      margin-top: 0 !important;
+    }
+  }
+
+  .modern-cars-grid {
+    display: grid !important;
+    visibility: visible !important;
+    overflow: hidden !important;
+    height: auto !important;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr !important;
+      width: 100% !important;
+    }
+  }
+
+  .modern-car-card {
+    display: flex !important;
+    overflow: hidden !important;
+    height: auto !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  .modern-car-image-container,
+  .modern-car-content,
+  .modern-car-description,
+  .modern-car-capacity,
+  .modern-car-button {
+    display: block !important;
+    visibility: visible !important;
+    overflow: visible !important;
+    height: auto !important;
+    opacity: 1 !important;
+  }
+}
+
+// Также добавим дополнительные правила для тщательного контроля переполнения
+.container {
+  // overflow-x: hidden;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+// Убедимся, что изображения не вызывают переполнение
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
